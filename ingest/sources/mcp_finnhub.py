@@ -31,25 +31,25 @@ def list_companies(country: str, limit: int) -> list[dict]:
             )
             r.raise_for_status()
             symbols = r.json()
-        out: list[dict] = []
-        for s in symbols[:limit]:
-            tkr = s.get("symbol")
-            try:
-                p = client.get(
-                    f"{BASE}/stock/profile2",
-                    params={"symbol": tkr, "token": _key()},
-                    timeout=10.0,
-                )
-                prof = p.json() if p.status_code == 200 else {}
-            except Exception:
-                prof = {}
-            out.append({
-                "ticker": tkr,
-                "name": prof.get("name") or s.get("description"),
-                "exchange": code,
-                "market_cap": (prof.get("marketCapitalization") or 0) * 1_000_000,
-                "industry": prof.get("finnhubIndustry"),
-            })
+            out: list[dict] = []
+            for s in symbols[:limit]:
+                tkr = s.get("symbol")
+                try:
+                    p = client.get(
+                        f"{BASE}/stock/profile2",
+                        params={"symbol": tkr, "token": _key()},
+                        timeout=10.0,
+                    )
+                    prof = p.json() if p.status_code == 200 else {}
+                except Exception:
+                    prof = {}
+                out.append({
+                    "ticker": tkr,
+                    "name": prof.get("name") or s.get("description"),
+                    "exchange": code,
+                    "market_cap": (prof.get("marketCapitalization") or 0) * 1_000_000,
+                    "industry": prof.get("finnhubIndustry"),
+                })
         return out
     except Exception as e:
         print(f"[finnhub] list_companies({country}) failed: {e}")
