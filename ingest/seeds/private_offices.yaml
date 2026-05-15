@@ -1,0 +1,956 @@
+# Curated seed list of family offices, family-controlled holding companies, trusts, and foundations across Asia.
+# Schema matches ingest.write_db.Entity dataclass.
+# AUM figures are best public estimates; see 'note' field for basis.
+# source_url points to official site, Wikipedia, Bloomberg profile, or established press.
+
+# ─── INDIA (IN) ───────────────────────────────────────────────────────────────
+
+- id: in-premji-invest
+  name: Premji Invest
+  type: sfo
+  country: IN
+  controlling_family: Premji
+  controllers: [Azim Premji, Rishad Premji]
+  estimated_aum_usd: 10_000_000_000
+  aum_basis: disclosed
+  sectors: [technology, consumer, financials, healthcare]
+  deployment: mixed
+  accessibility: restricted
+  source_url: https://premjiinvest.com/about
+  note: AUM ~$10B disclosed per multiple press references including Bloomberg 2023.
+
+- id: in-azim-premji-foundation
+  name: Azim Premji Foundation
+  type: foundation
+  country: IN
+  controlling_family: Premji
+  controllers: [Azim Premji]
+  estimated_aum_usd: 21_000_000_000
+  aum_basis: disclosed
+  sectors: [education, philanthropy]
+  deployment: direct
+  accessibility: closed
+  source_url: https://azimpremjifoundation.org/
+  note: Azim Premji has pledged ~$21B via Giving Pledge; foundation corpus per public disclosures.
+
+- id: in-catamaran-ventures
+  name: Catamaran Ventures
+  type: sfo
+  country: IN
+  controlling_family: Murthy
+  controllers: [N. R. Narayana Murthy]
+  estimated_aum_usd: 1_000_000_000
+  aum_basis: estimate
+  sectors: [technology, consumer, fintech]
+  deployment: direct
+  accessibility: restricted
+  source_url: https://catamaranventures.in/
+  note: AUM estimated from public deal history; no disclosed figure; midpoint ~$1B.
+
+- id: in-reliance-family-office
+  name: Reliance Industries Family Holdings
+  type: listed_holding
+  country: IN
+  controlling_family: Ambani
+  controllers: [Mukesh Ambani, Nita Ambani]
+  estimated_aum_usd: 100_000_000_000
+  aum_basis: market_cap
+  sectors: [energy, telecom, retail, technology, media]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.ril.com/
+  note: AUM proxy is Mukesh Ambani family stake in Reliance Industries market cap (~$230B total cap, ~44% family stake).
+
+- id: in-adani-enterprises-family
+  name: Adani Family Holdings
+  type: listed_holding
+  country: IN
+  controlling_family: Adani
+  controllers: [Gautam Adani, Karan Adani]
+  estimated_aum_usd: 55_000_000_000
+  aum_basis: market_cap
+  sectors: [infrastructure, energy, ports, airports, green_energy]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.adani.com/
+  note: Adani family holds ~75% of Adani Enterprises; AUM based on combined listed group market cap post-2023 correction.
+
+- id: in-tata-sons
+  name: Tata Sons
+  type: trust
+  country: IN
+  controlling_family: Tata
+  controllers: [N. Chandrasekaran, Ratan Tata]
+  estimated_aum_usd: 30_000_000_000
+  aum_basis: estimate
+  sectors: [industrials, technology, consumer, hospitality, steel, automotive]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.tata.com/
+  note: Tata Trusts own ~66% of Tata Sons; enterprise value estimated from combined Tata group subsidiary stakes.
+
+- id: in-aditya-birla-family
+  name: Aditya Birla Family Office
+  type: sfo
+  country: IN
+  controlling_family: Birla
+  controllers: [Kumar Mangalam Birla]
+  estimated_aum_usd: 20_000_000_000
+  aum_basis: market_cap
+  sectors: [financials, telecom, metals, cement, fashion]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://www.adityabirla.com/
+  note: Kumar Mangalam Birla family holds ~25% of ABG conglomerate; AUM estimated from family stake in listed entities.
+
+- id: in-bajaj-group-family
+  name: Bajaj Family Holdings
+  type: listed_holding
+  country: IN
+  controlling_family: Bajaj
+  controllers: [Rahul Bajaj, Rajiv Bajaj, Sanjiv Bajaj]
+  estimated_aum_usd: 15_000_000_000
+  aum_basis: market_cap
+  sectors: [automotive, financials, consumer]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.bajajgroup.com/
+  note: Bajaj family holds ~50%+ in key entities; AUM based on family stake in Bajaj Auto and Bajaj Finserv market caps.
+
+- id: in-godrej-family
+  name: Godrej Family Office
+  type: sfo
+  country: IN
+  controlling_family: Godrej
+  controllers: [Adi Godrej, Nadir Godrej, Jamshyd Godrej]
+  estimated_aum_usd: 8_000_000_000
+  aum_basis: market_cap
+  sectors: [consumer_goods, real_estate, agri, chemicals]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.godrej.com/
+  note: Godrej family holds ~70% in Godrej Industries; AUM estimated from family stake in listed Godrej entities.
+
+- id: in-hinduja-group-family
+  name: Hinduja Group Family Office
+  type: sfo
+  country: IN
+  controlling_family: Hinduja
+  controllers: [Gopichand Hinduja, Srichand Hinduja, Ashok Hinduja]
+  estimated_aum_usd: 12_000_000_000
+  aum_basis: estimate
+  sectors: [industrials, banking, media, oil_gas, trucks]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://www.hindujagroup.com/
+  note: Hinduja brothers' combined wealth estimated ~$12B per Forbes 2024; family office oversees global assets.
+
+# ─── HONG KONG (HK) ───────────────────────────────────────────────────────────
+
+- id: hk-ck-hutchison
+  name: CK Hutchison Holdings
+  type: listed_holding
+  country: HK
+  controlling_family: Li
+  controllers: [Li Ka-shing, Victor Li Tzar-kuoi]
+  estimated_aum_usd: 30_000_000_000
+  aum_basis: market_cap
+  sectors: [telecom, ports, retail, infrastructure, energy]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.ckhh.com/
+  note: Li Ka-shing family holds ~30% of CK Hutchison; AUM based on family stake in market cap ~$18B HKD equivalent.
+
+- id: hk-li-ka-shing-foundation
+  name: Li Ka Shing Foundation
+  type: foundation
+  country: HK
+  controlling_family: Li
+  controllers: [Li Ka-shing]
+  estimated_aum_usd: 4_000_000_000
+  aum_basis: disclosed
+  sectors: [education, healthcare, philanthropy]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.lksf.org/
+  note: Foundation AUM ~$4B+ per public disclosures; philanthropic vehicle of Li Ka-shing.
+
+- id: hk-sun-hung-kai-kwok
+  name: Sun Hung Kai Properties / Kwok Family
+  type: listed_holding
+  country: HK
+  controlling_family: Kwok
+  controllers: [Raymond Kwok Ping-luen, Thomas Kwok Ping-kwong]
+  estimated_aum_usd: 20_000_000_000
+  aum_basis: market_cap
+  sectors: [real_estate, hotels, transport]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.shkp.com/
+  note: Kwok family holds ~42% of SHKP; AUM estimated from family stake at HKD ~180B market cap.
+
+- id: hk-new-world-cheng
+  name: New World Development / Cheng Family
+  type: listed_holding
+  country: HK
+  controlling_family: Cheng
+  controllers: [Henry Cheng Kar-shun, Adrian Cheng Chi-kong]
+  estimated_aum_usd: 8_000_000_000
+  aum_basis: market_cap
+  sectors: [real_estate, retail, hospitality]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.newworlddev.com/
+  note: Cheng/Chow Tai Fook Enterprises holds ~57% of NWD; AUM estimated from family stake in listed entities.
+
+- id: hk-jardine-matheson-keswick
+  name: Jardine Matheson Holdings / Keswick Family
+  type: listed_holding
+  country: HK
+  controlling_family: Keswick
+  controllers: [Ben Keswick, Adam Keswick]
+  estimated_aum_usd: 15_000_000_000
+  aum_basis: market_cap
+  sectors: [real_estate, retail, automotive, hospitality, financial_services]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.jardines.com/
+  note: Keswick family controls Jardines via Bermuda holding structure; AUM estimated from ~40% effective stake at market cap ~$12B.
+
+- id: hk-pao-family-wsc
+  name: World-Wide Shipping / Pao Family
+  type: sfo
+  country: HK
+  controlling_family: Pao
+  controllers: [Helmut Sohmen, Anna Sohmen-Pao]
+  estimated_aum_usd: 3_500_000_000
+  aum_basis: estimate
+  sectors: [shipping, real_estate, finance]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://en.wikipedia.org/wiki/Y._K._Pao
+  note: Pao family fortune estimated ~$3–4B from shipping empire; managed via private holding vehicles.
+
+# ─── SINGAPORE (SG) ───────────────────────────────────────────────────────────
+
+- id: sg-tsao-family-office
+  name: Tsao Family Office
+  type: sfo
+  country: SG
+  controlling_family: Tsao
+  controllers: [Frederick Tsao]
+  estimated_aum_usd: 2_500_000_000
+  aum_basis: estimate
+  sectors: [shipping, real_estate, sustainability, wellness]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://www.tsaofamilyoffice.com/
+  note: AUM range ~$2–3B per industry press; Tsao family built wealth via Pacific International Lines.
+
+- id: sg-wee-family-uob
+  name: Wee Family / UOB Family Office
+  type: sfo
+  country: SG
+  controlling_family: Wee
+  controllers: [Wee Cho Yaw, Wee Ee Cheong]
+  estimated_aum_usd: 5_000_000_000
+  aum_basis: market_cap
+  sectors: [banking, real_estate, hospitality]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://www.uobgroup.com/
+  note: Wee family holds ~18% of UOB (mkt cap ~SGD 50B); AUM estimated from stake plus private assets.
+
+- id: sg-kwek-hong-leong
+  name: Hong Leong Group / Kwek Family
+  type: listed_holding
+  country: SG
+  controlling_family: Kwek
+  controllers: [Kwek Leng Beng, Sherman Kwek]
+  estimated_aum_usd: 7_000_000_000
+  aum_basis: market_cap
+  sectors: [real_estate, banking, hotels, industrials]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.cdl.com.sg/
+  note: Kwek family controls Hong Leong Group SG (~CDL, Hong Leong Finance); AUM estimated from listed stake value.
+
+- id: sg-khoo-foundation
+  name: Khoo Teck Puat Foundation / Khoo Family
+  type: foundation
+  country: SG
+  controlling_family: Khoo
+  controllers: [Mavis Khoo, Khoo Ban Hock]
+  estimated_aum_usd: 4_000_000_000
+  aum_basis: estimate
+  sectors: [healthcare, education, philanthropy, real_estate]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://www.ktpf.org/
+  note: Foundation endowment ~$4B per press estimates; funded via Standard Chartered stake sale by estate of Khoo Teck Puat.
+
+# ─── INDONESIA (ID) ───────────────────────────────────────────────────────────
+
+- id: id-djarum-hartono
+  name: Djarum Group / Hartono Family
+  type: sfo
+  country: ID
+  controlling_family: Hartono
+  controllers: [Robert Budi Hartono, Michael Bambang Hartono]
+  estimated_aum_usd: 47_000_000_000
+  aum_basis: market_cap
+  sectors: [tobacco, banking, real_estate, technology]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://www.djarum.com/
+  note: Hartonos are Indonesia's richest; ~47% stake in BCA bank (mkt cap ~$60B); AUM from bank stake plus other assets.
+
+- id: id-sinar-mas-widjaja
+  name: Sinar Mas Group / Widjaja Family
+  type: listed_holding
+  country: ID
+  controlling_family: Widjaja
+  controllers: [Eka Tjipta Widjaja, Teguh Ganda Widjaja, Franky Widjaja]
+  estimated_aum_usd: 18_000_000_000
+  aum_basis: estimate
+  sectors: [pulp_paper, palm_oil, real_estate, financial_services, energy]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.sinarmas.com/
+  note: Sinar Mas conglomerate AUM ~$18B estimated from combined listed entities (SMGR, INKP, BMRI stakes) and private assets.
+
+- id: id-salim-group
+  name: Salim Group / Salim Family
+  type: listed_holding
+  country: ID
+  controlling_family: Salim
+  controllers: [Anthony Salim, Andree Halim]
+  estimated_aum_usd: 20_000_000_000
+  aum_basis: estimate
+  sectors: [food_beverages, retail, auto, mining, real_estate]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.salimgroup.co.id/
+  note: Salim Group (Indofood, Indomaret) AUM ~$20B estimated; no disclosed figure; based on market caps of listed subsidiaries.
+
+- id: id-lippo-riady
+  name: Lippo Group / Riady Family
+  type: listed_holding
+  country: ID
+  controlling_family: Riady
+  controllers: [James Riady, Stephen Riady]
+  estimated_aum_usd: 6_000_000_000
+  aum_basis: estimate
+  sectors: [real_estate, healthcare, retail, financial_services]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.lippogroup.com/
+  note: Lippo Group AUM ~$6B estimated from listed entities (Lippo Karawaci, Lippo Malls) and private assets.
+
+- id: id-sampoerna-family
+  name: Sampoerna Strategic / Sampoerna Family
+  type: sfo
+  country: ID
+  controlling_family: Sampoerna
+  controllers: [Putera Sampoerna, Michael Sampoerna]
+  estimated_aum_usd: 3_000_000_000
+  aum_basis: estimate
+  sectors: [tobacco, real_estate, financial_services, agribusiness]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://www.sampoernastrategic.com/
+  note: Sampoernas sold HM Sampoerna to PMI in 2005 for ~$5.2B; residual family office AUM ~$3B estimated.
+
+# ─── THAILAND (TH) ────────────────────────────────────────────────────────────
+
+- id: th-cp-chearavanont
+  name: Charoen Pokphand Group / Chearavanont Family
+  type: listed_holding
+  country: TH
+  controlling_family: Chearavanont
+  controllers: [Dhanin Chearavanont, Suphachai Chearavanont]
+  estimated_aum_usd: 40_000_000_000
+  aum_basis: market_cap
+  sectors: [agribusiness, telecom, retail, automotive, real_estate]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.cpgroupglobal.com/
+  note: Chearavanont family controls CP Group; combined listed entities (CPALL, True Corp, CPF) market cap ~$40B+.
+
+- id: th-central-group-chirathivat
+  name: Central Group / Chirathivat Family
+  type: listed_holding
+  country: TH
+  controlling_family: Chirathivat
+  controllers: [Tos Chirathivat, Suthichart Chirathivat]
+  estimated_aum_usd: 20_000_000_000
+  aum_basis: market_cap
+  sectors: [retail, real_estate, hospitality, food_beverage]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.centralgroup.com/
+  note: Chirathivat family controls Central Group; CRC (Central Retail Corp) market cap ~THB 200B+; AUM from family stake.
+
+- id: th-tcc-sirivadhanabhakdi
+  name: TCC Group / Sirivadhanabhakdi Family
+  type: listed_holding
+  country: TH
+  controlling_family: Sirivadhanabhakdi
+  controllers: [Charoen Sirivadhanabhakdi, Wanna Sirivadhanabhakdi]
+  estimated_aum_usd: 15_000_000_000
+  aum_basis: estimate
+  sectors: [beverages, real_estate, retail, hospitality, agriculture]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.tcc.co.th/
+  note: TCC Group (Thai Beverage, Beer Chang, Fraser & Neave) AUM ~$15B estimated from combined listed stakes.
+
+# ─── MALAYSIA (MY) ────────────────────────────────────────────────────────────
+
+- id: my-kuok-group
+  name: Kuok Group / Robert Kuok Family
+  type: listed_holding
+  country: MY
+  controlling_family: Kuok
+  controllers: [Robert Kuok, Kuok Khoon Hong]
+  estimated_aum_usd: 18_000_000_000
+  aum_basis: estimate
+  sectors: [sugar, palm_oil, shipping, hotels, real_estate, media]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://www.kuokgroup.com/
+  note: Robert Kuok is SE Asia's richest; Kuok Group AUM ~$18B estimated; Forbes 2024 net worth ~$11.5B.
+
+- id: my-genting-lim
+  name: Genting Group / Lim Family
+  type: listed_holding
+  country: MY
+  controlling_family: Lim
+  controllers: [Lim Kok Thay, Lim Keong Hui]
+  estimated_aum_usd: 12_000_000_000
+  aum_basis: market_cap
+  sectors: [gaming, hospitality, energy, plantations]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.genting.com/
+  note: Lim family holds majority in Genting Berhad (MYR ~15B mkt cap) and Genting Malaysia; AUM from combined stakes.
+
+- id: my-ytl-yeoh
+  name: YTL Group / Yeoh Family
+  type: listed_holding
+  country: MY
+  controlling_family: Yeoh
+  controllers: [Francis Yeoh Sock Ping, Yeoh Seok Kian]
+  estimated_aum_usd: 8_000_000_000
+  aum_basis: market_cap
+  sectors: [utilities, cement, hospitality, property, telecommunications]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.ytl.com/
+  note: Yeoh family holds ~50% in YTL Corp; YTL group listed entities combined mkt cap ~MYR 25B; AUM estimated from stake.
+
+- id: my-ananda-usaha-tegas
+  name: Usaha Tegas / Ananda Krishnan
+  type: sfo
+  country: MY
+  controlling_family: Ananda Krishnan
+  controllers: [T. Ananda Krishnan]
+  estimated_aum_usd: 11_000_000_000
+  aum_basis: estimate
+  sectors: [telecom, satellite, gaming, petroleum, real_estate]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://en.wikipedia.org/wiki/Ananda_Krishnan
+  note: Ananda Krishnan net worth ~$11B per Forbes 2024; controls Maxis, Astro, Tanjong via private holding Usaha Tegas.
+
+- id: my-berjaya-vincent-tan
+  name: Berjaya Group / Vincent Tan
+  type: listed_holding
+  country: MY
+  controlling_family: Tan
+  controllers: [Vincent Tan Chee Yioun]
+  estimated_aum_usd: 2_000_000_000
+  aum_basis: market_cap
+  sectors: [gaming, retail, financial_services, food_beverage]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.berjaya.com/
+  note: Vincent Tan controls Berjaya Corp; MYR ~3B market cap; AUM includes private assets; Forbes net worth ~$1.5B.
+
+# ─── PHILIPPINES (PH) ─────────────────────────────────────────────────────────
+
+- id: ph-sm-investments-sy
+  name: SM Investments / Sy Family
+  type: listed_holding
+  country: PH
+  controlling_family: Sy
+  controllers: [Henry Sy Jr., Teresita Sy-Coson, Herbert Sy]
+  estimated_aum_usd: 25_000_000_000
+  aum_basis: market_cap
+  sectors: [retail, real_estate, banking, food_beverage]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.sminvestments.com/
+  note: Sy family holds ~47% of SM Investments (PHP ~1.3T mkt cap); AUM estimated from family stake plus BDO bank stake.
+
+- id: ph-ayala-family
+  name: Ayala Corporation / Ayala Family
+  type: listed_holding
+  country: PH
+  controlling_family: Ayala
+  controllers: [Jaime Augusto Zobel de Ayala, Fernando Zobel de Ayala]
+  estimated_aum_usd: 8_000_000_000
+  aum_basis: market_cap
+  sectors: [real_estate, banking, telecoms, water, power, industrials]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.ayala.com.ph/
+  note: Zobel de Ayala family controls Ayala Corp via Mermac; ~48% stake; PHP ~680B mkt cap total group.
+
+- id: ph-jg-summit-gokongwei
+  name: JG Summit / Gokongwei Family
+  type: listed_holding
+  country: PH
+  controlling_family: Gokongwei
+  controllers: [Lance Gokongwei, Robina Gokongwei-Pe]
+  estimated_aum_usd: 8_000_000_000
+  aum_basis: market_cap
+  sectors: [food_beverage, real_estate, airlines, telecom, chemicals]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.jgsummit.com.ph/
+  note: Gokongwei family holds ~59% of JG Summit; AUM based on family stake in PHP ~230B group market cap.
+
+- id: ph-lucio-tan-group
+  name: LT Group / Lucio Tan Family
+  type: listed_holding
+  country: PH
+  controlling_family: Tan
+  controllers: [Lucio Tan, Lucio Tan Jr.]
+  estimated_aum_usd: 5_000_000_000
+  aum_basis: market_cap
+  sectors: [tobacco, banking, airlines, real_estate, beverages]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.ltgroup.com.ph/
+  note: Lucio Tan controls LT Group (Philippine Airlines, PNB, Fortune Tobacco); AUM from combined stake in listed entities.
+
+# ─── JAPAN (JP) ───────────────────────────────────────────────────────────────
+
+- id: jp-toyota-industries-toyoda
+  name: Toyota Industries / Toyoda Family
+  type: listed_holding
+  country: JP
+  controlling_family: Toyoda
+  controllers: [Akio Toyoda, Shoichiro Toyoda]
+  estimated_aum_usd: 10_000_000_000
+  aum_basis: market_cap
+  sectors: [automotive, industrials, logistics]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.toyota-industries.com/
+  note: Toyoda family holds ~10% in Toyota Industries (mkt cap ~JPY 4T); Toyota Motor cross-holdings amplify effective control.
+
+- id: jp-suntory-saji-torii
+  name: Suntory Holdings / Saji-Torii Family
+  type: listed_holding
+  country: JP
+  controlling_family: Saji
+  controllers: [Nobutada Saji, Shinjiro Torii]
+  estimated_aum_usd: 15_000_000_000
+  aum_basis: estimate
+  sectors: [beverages, food, wellness]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.suntory.com/
+  note: Suntory is privately held; Saji family controls it; AUM ~$15B estimated from industry sales (~JPY 2.8T) and profit base.
+
+- id: jp-mori-trust-family
+  name: Mori Trust / Mori Family
+  type: sfo
+  country: JP
+  controlling_family: Mori
+  controllers: [Akira Mori, Miwako Date]
+  estimated_aum_usd: 5_000_000_000
+  aum_basis: estimate
+  sectors: [real_estate, hotels, development]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.mori-trust.co.jp/
+  note: Mori Trust manages Mori family real estate; AUM ~$5B estimated from Tokyo office and hotel portfolio value.
+
+# ─── KOREA (KR) ───────────────────────────────────────────────────────────────
+
+- id: kr-samsung-lee-family
+  name: Samsung Family Holdings / Lee Family
+  type: listed_holding
+  country: KR
+  controlling_family: Lee
+  controllers: [Lee Jae-yong, Lee Boo-jin, Lee Seo-hyun]
+  estimated_aum_usd: 60_000_000_000
+  aum_basis: market_cap
+  sectors: [technology, consumer_electronics, insurance, construction, hospitality]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.samsung.com/
+  note: Lee family controls Samsung group via circular holdings; AUM estimated from effective ~5% ownership in Samsung Electronics (~$340B mkt cap) plus other entities.
+
+- id: kr-hyundai-chung-family
+  name: Hyundai Family Holdings / Chung Family
+  type: listed_holding
+  country: KR
+  controlling_family: Chung
+  controllers: [Chung Eui-sun, Chung Mong-joon]
+  estimated_aum_usd: 15_000_000_000
+  aum_basis: market_cap
+  sectors: [automotive, steel, construction, financial_services]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.hyundai.com/
+  note: Chung family controls Hyundai Motor Group (~KRW 70T combined); AUM estimated from family stake in key listed entities.
+
+- id: kr-lg-koo-family
+  name: LG Group / Koo Family
+  type: listed_holding
+  country: KR
+  controlling_family: Koo
+  controllers: [Koo Kwang-mo, Koo Bon-moo]
+  estimated_aum_usd: 12_000_000_000
+  aum_basis: market_cap
+  sectors: [electronics, chemicals, telecom, financial_services]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.lg.com/
+  note: Koo family controls LG Corp (~KRW 12T mkt cap); AUM estimated from family stake in LG holding company.
+
+- id: kr-lotte-shin-family
+  name: Lotte Group / Shin Family
+  type: listed_holding
+  country: KR
+  controlling_family: Shin
+  controllers: [Shin Dong-bin, Shin Dong-joo]
+  estimated_aum_usd: 10_000_000_000
+  aum_basis: market_cap
+  sectors: [retail, food_beverage, chemicals, hospitality]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.lotte.com/
+  note: Shin family controls Lotte group; Lotte Corp (KRW ~5T mkt cap); AUM estimated from combined listed entity stakes.
+
+# ─── AUSTRALIA (AU) ───────────────────────────────────────────────────────────
+
+- id: au-hancock-prospecting-rinehart
+  name: Hancock Prospecting / Rinehart Family
+  type: sfo
+  country: AU
+  controlling_family: Rinehart
+  controllers: [Gina Rinehart, Bianca Rinehart, John Hancock]
+  estimated_aum_usd: 30_000_000_000
+  aum_basis: estimate
+  sectors: [mining, iron_ore, cattle, agriculture]
+  deployment: direct
+  accessibility: closed
+  source_url: https://hancockprospecting.com.au/
+  note: Gina Rinehart net worth ~$30B per Forbes 2024; Hancock Prospecting is private; AUM estimated from iron ore royalties and equity.
+
+- id: au-tattarang-forrest
+  name: Tattarang / Andrew Forrest Family
+  type: sfo
+  country: AU
+  controlling_family: Forrest
+  controllers: [Andrew Forrest, Nicola Forrest]
+  estimated_aum_usd: 25_000_000_000
+  aum_basis: market_cap
+  sectors: [mining, green_hydrogen, agriculture, technology, philanthropy]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://www.tattarang.com/
+  note: Tattarang is Forrest family office; ~37% stake in Fortescue (mkt cap ~$50B AUD); plus diversified private assets.
+
+- id: au-seven-group-stokes
+  name: Seven Group Holdings / Stokes Family
+  type: listed_holding
+  country: AU
+  controlling_family: Stokes
+  controllers: [Kerry Stokes, Ryan Stokes]
+  estimated_aum_usd: 7_000_000_000
+  aum_basis: market_cap
+  sectors: [media, mining_equipment, energy, construction]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.sevengroup.com.au/
+  note: Stokes family holds ~68% of Seven Group (AUD ~14B mkt cap); AUM estimated from stake value.
+
+- id: au-lowy-family-group
+  name: Lowy Family Group
+  type: sfo
+  country: AU
+  controlling_family: Lowy
+  controllers: [Frank Lowy, Peter Lowy, Steven Lowy, David Lowy]
+  estimated_aum_usd: 8_000_000_000
+  aum_basis: estimate
+  sectors: [real_estate, philanthropy, media, finance]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://lowyfamilygroup.com.au/
+  note: Lowy family sold Westfield to Unibail-Rodamco for ~$33B in 2018; LFG manages residual assets; AUM ~$8B estimated.
+
+# ─── CHINA (CN) ───────────────────────────────────────────────────────────────
+
+- id: cn-wahaha-zong
+  name: Wahaha Group / Zong Qinghou Family
+  type: listed_holding
+  country: CN
+  controlling_family: Zong
+  controllers: [Kelly Zong Fuli]
+  estimated_aum_usd: 5_000_000_000
+  aum_basis: estimate
+  sectors: [food_beverage, water, dairy]
+  deployment: direct
+  accessibility: closed
+  source_url: https://en.wikipedia.org/wiki/Wahaha
+  note: Zong Qinghou estate managed by daughter Kelly Zong after founder's death 2024; AUM ~$5B estimated from group revenues.
+
+- id: cn-geely-li-shufu
+  name: Geely Holding / Li Shufu Family
+  type: listed_holding
+  country: CN
+  controlling_family: Li
+  controllers: [Li Shufu]
+  estimated_aum_usd: 20_000_000_000
+  aum_basis: market_cap
+  sectors: [automotive, mobility, technology]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.geely.com/
+  note: Li Shufu controls Geely Auto (HK listed, mkt cap ~HKD 70B) plus Volvo Cars, Polestar, Lotus; AUM from combined stakes.
+
+- id: cn-dalian-wanda-wang-jianlin
+  name: Dalian Wanda Group / Wang Jianlin Family
+  type: listed_holding
+  country: CN
+  controlling_family: Wang
+  controllers: [Wang Jianlin, Wang Sicong]
+  estimated_aum_usd: 8_000_000_000
+  aum_basis: estimate
+  sectors: [real_estate, cinema, sports, entertainment]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.wanda-group.com/
+  note: Wanda AUM estimated ~$8B after asset sales and deleveraging 2022-2024; earlier peak >$40B; estimate based on remaining mall portfolio.
+
+# ─── NEW ZEALAND (NZ) ─────────────────────────────────────────────────────────
+
+- id: nz-rank-group-hart
+  name: Rank Group / Hart Family
+  type: sfo
+  country: NZ
+  controlling_family: Hart
+  controllers: [Graeme Hart]
+  estimated_aum_usd: 7_000_000_000
+  aum_basis: estimate
+  sectors: [packaging, food_beverage, industrials, real_estate]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://en.wikipedia.org/wiki/Graeme_Hart
+  note: Graeme Hart is NZ's richest; Rank Group manages ~$7B+ in assets per Forbes; specializes in packaging buyouts.
+
+- id: nz-zuru-mowbray
+  name: Zuru Group / Mowbray Family
+  type: sfo
+  country: NZ
+  controlling_family: Mowbray
+  controllers: [Nick Mowbray, Matt Mowbray, Anna Mowbray]
+  estimated_aum_usd: 3_000_000_000
+  aum_basis: estimate
+  sectors: [toys, consumer_goods, fintech, real_estate]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://zuru.com/
+  note: Mowbray siblings control Zuru Group; AUM ~$2–4B estimated; Forbes listed family among NZ's wealthiest.
+
+# ─── VIETNAM (VN) ─────────────────────────────────────────────────────────────
+
+- id: vn-vingroup-vuong
+  name: Vingroup / Pham Nhat Vuong Family
+  type: listed_holding
+  country: VN
+  controlling_family: Vuong
+  controllers: [Pham Nhat Vuong, Pham Thu Huong]
+  estimated_aum_usd: 9_000_000_000
+  aum_basis: market_cap
+  sectors: [real_estate, automotive, retail, healthcare, education, technology]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.vingroup.net/
+  note: Pham Nhat Vuong holds ~65% of Vingroup (VND ~100T mkt cap); AUM estimated from stake plus VinFast equity.
+
+- id: vn-hoa-phat-tran
+  name: Hoa Phat Group / Tran Dinh Long Family
+  type: listed_holding
+  country: VN
+  controlling_family: Tran
+  controllers: [Tran Dinh Long, Vu Thi Hien]
+  estimated_aum_usd: 4_000_000_000
+  aum_basis: market_cap
+  sectors: [steel, real_estate, agriculture]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.hoaphat.com.vn/
+  note: Tran Dinh Long holds ~35% of Hoa Phat (VND ~60T mkt cap); one of Vietnam's largest steel producers.
+
+- id: vn-masan-nguyen-dang-quang
+  name: Masan Group / Nguyen Dang Quang Family
+  type: listed_holding
+  country: VN
+  controlling_family: Nguyen
+  controllers: [Nguyen Dang Quang, Ho Hung Anh]
+  estimated_aum_usd: 3_000_000_000
+  aum_basis: market_cap
+  sectors: [consumer_goods, mining, financial_services, retail]
+  deployment: direct
+  accessibility: closed
+  source_url: https://masangroup.com/
+  note: Nguyen Dang Quang controls ~26% of Masan Group (VND ~50T mkt cap); consumer and mining conglomerate.
+
+# ─── TIER-3: BRUNEI (BN) ──────────────────────────────────────────────────────
+
+- id: bn-brunei-investment-agency-sultan
+  name: Brunei Investment Agency / Sultan Family
+  type: sfo
+  country: BN
+  controlling_family: Bolkiah
+  controllers: [Sultan Hassanal Bolkiah, Prince Al-Muhtadee Billah]
+  estimated_aum_usd: 60_000_000_000
+  aum_basis: estimate
+  sectors: [oil_gas, real_estate, financial_services, diversified]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://en.wikipedia.org/wiki/Brunei_Investment_Agency
+  note: BIA estimated AUM ~$60B per Sovereign Wealth Fund Institute; managed by Sultan's family as national wealth vehicle.
+
+# ─── TIER-3: PAKISTAN (PK) ────────────────────────────────────────────────────
+
+- id: pk-nishat-group-mansha
+  name: Nishat Group / Mian Mansha Family
+  type: listed_holding
+  country: PK
+  controlling_family: Mansha
+  controllers: [Mian Muhammad Mansha]
+  estimated_aum_usd: 3_000_000_000
+  aum_basis: estimate
+  sectors: [banking, textiles, cement, power, insurance]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.nishat.net/
+  note: Nishat Group spans MCB Bank, Nishat Textiles; AUM ~$3B estimated from listed entity stakes; Forbes Pakistan rich list.
+
+- id: pk-habib-family-group
+  name: Habib Group / Habib Family
+  type: listed_holding
+  country: PK
+  controlling_family: Habib
+  controllers: [Kassim Mohamed Habib, Ali Raza Habib]
+  estimated_aum_usd: 2_000_000_000
+  aum_basis: estimate
+  sectors: [banking, trading, insurance, real_estate]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://en.wikipedia.org/wiki/Habib_Group_(Pakistan)
+  note: One of Pakistan's oldest business families; Habib Bank (HBL) plus trading interests; AUM ~$2B estimated.
+
+# ─── TIER-3: BANGLADESH (BD) ──────────────────────────────────────────────────
+
+- id: bd-beximco-sobhan
+  name: Beximco Group / Sobhan Family
+  type: listed_holding
+  country: BD
+  controlling_family: Sobhan
+  controllers: [Salman F. Rahman, Sohel F. Rahman]
+  estimated_aum_usd: 1_500_000_000
+  aum_basis: estimate
+  sectors: [pharmaceuticals, textiles, real_estate, media, energy]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.beximco.com/
+  note: Beximco conglomerate AUM ~$1–2B estimated; Salman F. Rahman is political-business figure; no disclosed AUM.
+
+# ─── TIER-3: SRI LANKA (LK) ───────────────────────────────────────────────────
+
+- id: lk-hayleys-carson-family
+  name: Hayleys / Carson Cumberbatch Family Interests
+  type: listed_holding
+  country: LK
+  controlling_family: Jayawardena
+  controllers: [Dhammika Perera, Mohan Pandithage]
+  estimated_aum_usd: 800_000_000
+  aum_basis: market_cap
+  sectors: [agriculture, rubber, agribusiness, leisure, consumer]
+  deployment: direct
+  accessibility: closed
+  source_url: https://www.hayleys.com/
+  note: Hayleys and Carson Cumberbatch are key Sri Lanka conglomerates; AUM ~$800M estimated from combined CSE market cap.
+
+# ─── TIER-3: NEPAL (NP) ───────────────────────────────────────────────────────
+
+- id: np-cg-corp-chaudhary
+  name: CG Corp Global / Chaudhary Family
+  type: listed_holding
+  country: NP
+  controlling_family: Chaudhary
+  controllers: [Binod Kumar Chaudhary, Nirvana Chaudhary]
+  estimated_aum_usd: 1_500_000_000
+  aum_basis: estimate
+  sectors: [food_beverage, hospitality, real_estate, financial_services, manufacturing]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://www.cgcorpglobal.com/
+  note: CG Corp is Nepal's largest conglomerate (Wai Wai noodles etc.); AUM ~$1–2B estimated; Binod Chaudhary is Nepal's first dollar billionaire.
+
+# ─── TIER-3: KAZAKHSTAN (KZ) ──────────────────────────────────────────────────
+
+- id: kz-kulibayev-family
+  name: Kulibayev Family Office
+  type: sfo
+  country: KZ
+  controlling_family: Kulibayev
+  controllers: [Timur Kulibayev, Dinara Kulibayeva]
+  estimated_aum_usd: 3_500_000_000
+  aum_basis: estimate
+  sectors: [energy, banking, real_estate, diversified]
+  deployment: mixed
+  accessibility: closed
+  source_url: https://en.wikipedia.org/wiki/Timur_Kulibayev
+  note: Kulibayev (son-in-law of Nazarbayev) controls Halyk Bank and oil interests; AUM ~$3–4B estimated from Forbes profile.
+
+# ─── TIER-3: MYANMAR (MM) ────────────────────────────────────────────────────
+
+- id: mm-teza-technologies-htun
+  name: Teza Technologies / Zaw Zaw Family
+  type: sfo
+  country: MM
+  controlling_family: Zaw
+  controllers: [Zaw Zaw]
+  estimated_aum_usd: 500_000_000
+  aum_basis: unknown
+  sectors: [banking, real_estate, tourism, construction]
+  deployment: direct
+  accessibility: closed
+  source_url: https://en.wikipedia.org/wiki/Zaw_Zaw_(businessman)
+  note: Zaw Zaw is Myanmar's prominent business figure (Max Myanmar Group, Asia Green Development Bank); AUM largely unknown; estimate based on publicly reported asset portfolio.
+
+# ─── TIER-3: CAMBODIA (KH) ───────────────────────────────────────────────────
+
+- id: kh-neak-oknha-kith-family
+  name: Kith Meng / Royal Group Family
+  type: sfo
+  country: KH
+  controlling_family: Kith
+  controllers: [Kith Meng]
+  estimated_aum_usd: 400_000_000
+  aum_basis: unknown
+  sectors: [telecoms, banking, real_estate, media, hospitality]
+  deployment: direct
+  accessibility: closed
+  source_url: https://en.wikipedia.org/wiki/Kith_Meng
+  note: Kith Meng controls Royal Group (Cellcard, ANZ Royal Bank stake, properties); AUM range uncertain; estimate from reported business holdings.

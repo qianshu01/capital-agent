@@ -1,0 +1,14 @@
+tiers:
+  tier1: [HK, JP, SG, IN, KR, AU, CN]
+  tier2: [MY, ID, TH, PH, NZ, VN]
+  tier3: [MM, LA, BT, BN, MN, PK, LK, BD, NP, KH, KZ]
+
+ownership:
+  family_min_pct: 25.0
+  top_n_holders: 10
+
+listed:
+  cap_per_country: 100         # max companies fetched per country
+
+sanity:
+  min_total_entities: 50       # build fails below this
