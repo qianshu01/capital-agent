@@ -2,6 +2,12 @@ from __future__ import annotations
 
 from pathlib import Path
 from fastapi import FastAPI
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 from fastapi.staticfiles import StaticFiles
 from backend.routers import entities, entity, ask
 
