@@ -10,19 +10,26 @@ See:
 ## Quick start (Docker)
 
 ```bash
+# Copy and fill in your API keys first
+cp .env.example .env
+
 docker build \
-  --build-arg POLYGON_API_KEY=$POLYGON_API_KEY \
-  --build-arg FINNHUB_API_KEY=$FINNHUB_API_KEY \
-  --build-arg ALPHAVANTAGE_API_KEY=$ALPHAVANTAGE_API_KEY \
+  --build-arg EXA_API_KEY=$EXA_API_KEY \
+  --build-arg FIRECRAWL_API_KEY=$FIRECRAWL_API_KEY \
+  --build-arg CRUNCHBASE_API_KEY=$CRUNCHBASE_API_KEY \
+  --build-arg APOLLO_API_KEY=$APOLLO_API_KEY \
+  --build-arg LINKEDIN_API_KEY=$LINKEDIN_API_KEY \
   -t capital-agent .
 
 docker run -d --name capital-agent \
   -p 8443:8443 \
   -v capital-data:/app/data \
   -e OPENROUTER_API_KEY=$OPENROUTER_API_KEY \
-  -e POLYGON_API_KEY=$POLYGON_API_KEY \
-  -e FINNHUB_API_KEY=$FINNHUB_API_KEY \
-  -e ALPHAVANTAGE_API_KEY=$ALPHAVANTAGE_API_KEY \
+  -e EXA_API_KEY=$EXA_API_KEY \
+  -e FIRECRAWL_API_KEY=$FIRECRAWL_API_KEY \
+  -e CRUNCHBASE_API_KEY=$CRUNCHBASE_API_KEY \
+  -e APOLLO_API_KEY=$APOLLO_API_KEY \
+  -e LINKEDIN_API_KEY=$LINKEDIN_API_KEY \
   capital-agent
 
 open https://localhost:8443  # accept the self-signed cert warning
@@ -31,7 +38,8 @@ open https://localhost:8443  # accept the self-signed cert warning
 ## Refresh the dataset
 
 ```bash
-docker exec capital-agent python -m ingest.run --out /app/data/capital.db [--enrich]
+docker exec capital-agent python -m ingest.run \
+  --out /app/data/capital.db [--discover] [--enrich-sources] [--enrich]
 ```
 
 Backend keeps serving during the refresh (SQLite WAL mode).

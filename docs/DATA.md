@@ -32,7 +32,7 @@ Every material claim about an entity has a row here.
 |---|---|
 | `entity_id` | FK → `entities.id` |
 | `field` | Which entity column the source backs |
-| `source_type` | `mcp:polygon` / `mcp:finnhub` / `mcp:alphavantage` / `filing` / `news` / `curated` / `llm:openrouter` |
+| `source_type` | `exa` / `firecrawl` / `crunchbase` / `apollo` / `linkedin` / `curated` / `llm:openrouter` / `filing` / `news` |
 | `url` | Link if available |
 | `note` | Free-text context |
 | `retrieved_at` | ISO timestamp |
