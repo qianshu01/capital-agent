@@ -24,6 +24,8 @@ class Entity(BaseModel):
     thesis_blurb: str | None = None
     data_quality: int
     updated_at: str
+    provenance: str | None = None
+    confidence_score: int | None = None
 
     @field_validator("controllers", "sectors", mode="before")
     @classmethod
