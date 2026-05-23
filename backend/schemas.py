@@ -62,3 +62,29 @@ class AskResponse(BaseModel):
     answer: str
     entities: list[Entity]
     filters_used: dict
+
+class Evidence(BaseModel):
+    question_key: str
+    answer: str
+    confidence: int
+    source_urls: list[str] = []
+
+class EntityDetailV2(BaseModel):
+    """Detail response including evidence. Replaces EntityDetail at the API layer."""
+    entity: Entity
+    sources: list[Source]
+    activities: list[Activity]
+    assumptions: list[str]
+    evidence: list[Evidence]
+
+class ChatRequest(BaseModel):
+    session_id: str
+    message: str
+
+class ChatHistoryMessage(BaseModel):
+    role: str
+    content: str | None = None
+
+class ChatHistory(BaseModel):
+    session_id: str
+    messages: list[ChatHistoryMessage]
