@@ -1,44 +1,26 @@
-"""Firecrawl URL-scraping wrapper.
-
-Scrapes a URL and returns the markdown text.
-Returns None (never raises) when FIRECRAWL_API_KEY is missing or the call fails.
-"""
+"""Firecrawl URL → markdown wrapper. FIRECRAWL_API_KEY env."""
 from __future__ import annotations
-
-import logging
 import os
-
 import httpx
 
-BASE = "https://api.firecrawl.dev/v1"
-log = logging.getLogger(__name__)
-
-
-def _key() -> str | None:
-    return os.environ.get("FIRECRAWL_API_KEY") or None
-
+URL = "https://api.firecrawl.dev/v1/scrape"
+MAX_CHARS = 8000
 
 def scrape(url: str) -> str | None:
-    """Return scraped markdown for `url`. None when FIRECRAWL_API_KEY missing or error."""
-    key = _key()
+    """Markdown text of `url` (truncated to MAX_CHARS). None on missing key/error."""
+    key = os.environ.get("FIRECRAWL_API_KEY")
     if not key:
-        log.warning("[firecrawl] FIRECRAWL_API_KEY not set — skipping scrape")
         return None
     try:
-        with httpx.Client(timeout=30.0) as client:
-            r = client.post(
-                f"{BASE}/scrape",
-                headers={
-                    "Authorization": f"Bearer {key}",
-                    "Content-Type": "application/json",
-                },
-                json={"url": url, "formats": ["markdown"]},
-            )
+        with httpx.Client(timeout=45.0) as c:
+            r = c.post(URL, headers={"Authorization": f"Bearer {key}",
+                                     "Content-Type": "application/json"},
+                       json={"url": url, "formats": ["markdown"]})
             if r.status_code != 200:
-                log.warning("[firecrawl] scrape(%r) → HTTP %s", url, r.status_code)
+                print(f"[firecrawl] {r.status_code} for {url}: {r.text[:200]}")
                 return None
-            data = r.json()
-        return data.get("data", {}).get("markdown") or None
-    except Exception as exc:
-        log.warning("[firecrawl] scrape(%r) failed: %s", url, exc)
+            md = (r.json().get("data") or {}).get("markdown")
+        return (md or "")[:MAX_CHARS] or None
+    except Exception as e:
+        print(f"[firecrawl] failed for {url}: {e}")
         return None
