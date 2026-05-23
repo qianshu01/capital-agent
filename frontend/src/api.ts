@@ -37,7 +37,7 @@ export async function streamChat(
   while (true) {
     const { value, done } = await reader.read();
     if (done) break;
-    buf += dec.decode(value, { stream: true });
+    buf += dec.decode(value, { stream: true }).replace(/\r\n/g, "\n");
     let idx;
     while ((idx = buf.indexOf("\n\n")) !== -1) {
       const chunk = buf.slice(0, idx); buf = buf.slice(idx + 2);
