@@ -1,56 +1,66 @@
 # Methodology
 
 ## Goal
-Produce a defensible, repeatable inventory of family-office and family-controlled capital pools across 22 Asian markets.
+Map family-office and family-controlled capital pools in Asia as **specific named investment vehicles** (not families), with every material claim cited and the 7 core questions from the brief answered per row.
 
-## Discovery and enrichment
+## Pipeline
 
-**Curated seed (all tiers, primary source of truth).** `ingest/seeds/private_offices.yaml` lists 65+ known SFOs/MFOs/foundations with a `source_url` and a `note` explaining the AUM basis for each entry. This is the only mandatory step — running without any API keys produces a complete seed-only database.
+```
+discover → scrape → corroborate → extract → cite → validate → commit
+```
 
-**Exa discovery pass (`--discover`, optional).** When `EXA_API_KEY` is set, `ingest/sources/exa.py` runs neural web searches for each Tier-1/Tier-2 country (e.g. "family office Singapore 2025"). The top results are written to `data/discovery_candidates.json` for human triage. Candidates are never added to the database automatically — they require a human review step.
+Implemented as a single LLM tool-use loop in `backend/research/loop.py`. The LLM (default: `google/gemini-2.0-flash-exp:free` on OpenRouter) plans; the tools do I/O.
 
-**Per-source enrichment pass (`--enrich-sources`, optional).** Four enrichment sources may run against each seed entity:
+| Stage | Tool | Free-tier impl | Paid-tier replacement |
+|---|---|---|---|
+| Discover | `search_web` | Exa neural search | PitchBook search API |
+| Scrape | `scrape_url` | Firecrawl | Bright Data / Diffbot |
+| Corroborate (org) | `apollo_org_lookup` | Apollo | ZoomInfo |
+| Corroborate (listed) | `finnhub_company`, `polygon_ticker_lookup` | Finnhub, Polygon | Bloomberg, Refinitiv |
+| Triage | `query_db` | local SQLite | unchanged |
+| Persist | `commit_entity` | local SQLite + validator | unchanged |
 
-- **Crunchbase** (`CRUNCHBASE_API_KEY`): organization lookup and recent funding/deal history → `activities` rows and `crunchbase` source rows.
-- **Apollo** (`APOLLO_API_KEY`): organization profile → fills missing `sectors`, `employees`, `founded_year` → `apollo` source rows.
-- **LinkedIn via Proxycurl** (`LINKEDIN_API_KEY`): company and person profiles for entities with a known LinkedIn URL → `linkedin` source rows.
-- **Firecrawl** (`FIRECRAWL_API_KEY`): scrapes each entity's `source_url` to markdown → attaches a text snippet as a `firecrawl` source row.
+Each tool has a fixed input/output contract. Swapping the implementation behind any tool is a one-file change in `backend/research/tools.py` plus the wrapped client in `ingest/sources/`. The loop, validator, schema, UI, and prompts do not change. This is the scalability story.
 
-All enrichment sources fail soft: a missing key or network error logs a single warning and returns an empty result. The build never fails due to enrichment.
+## Validator contract (`backend/research/validator.py`)
 
-## Tiering
+Every bundle passed to `commit_entity` is validated server-side. A bundle is rejected (and the LLM gets the errors back to retry) if any of:
 
-- **Tier 1** (HK, JP, SG, IN, KR, AU, CN): full listed loop + seed.
-- **Tier 2** (MY, ID, TH, PH, NZ, VN): listed where MCP supports the exchange + seed.
-- **Tier 3** (Myanmar, Laos, Bhutan, Brunei, Mongolia, Pakistan, Sri Lanka, Bangladesh, Nepal, Cambodia, Kazakhstan): seed only.
+- Fewer than 5 of the 7 core questions are answered
+- Any cited URL is not present in the `sources` array
+- `who_controls` matches the banned-generic regex: `family office team`, `the family`, `investment team`, `family members`, `management team`, `the office`, `in-house team`, `allocation team`
+- `how_much_capital` has neither a `$`-figure nor the explicit "no public estimate; reasoning: ..." phrase
+- `provenance` is not one of `curated` / `chat_discovered` / `chat_enriched`
+- `confidence_score` is not 1-5
 
-## Provenance
+This makes "no generics" and "every claim cited" code constraints, not hopes.
 
-Every material field write also writes a `sources` row. Estimated AUM also requires an `assumptions` row when the basis is `estimate`. Curated rows must include `source_url` and `note`.
+## The 7 core questions
 
-## Data quality scoring
+1. **where_capital_sits** — named vehicle, location, structure
+2. **how_much_capital** — USD figure or explicit reasoned estimate
+3. **who_controls** — named individuals with roles (NEVER "the family")
+4. **how_deployed** — asset mix, recent commitments
+5. **direct_or_external** — proportion or evidence either way
+6. **accessibility** — LP history, public statements about external managers
+7. **why_invest** — mandate, time horizon, recent shifts
 
-Computed by `ingest/classify.py::infer_data_quality`. See `docs/DATA.md` for the rubric.
+Stored normalized in the `evidence` table (one row per (entity, question_key)) with citations via `sources.evidence_id`.
 
-## Failure handling
+## Seed curation
 
-- MCP unreachable for a country → skip, log, build continues.
-- LLM enrichment failure → entity written with `thesis_blurb` null.
-- Whole-build sanity check: ingestion fails if final entity count < 50.
+`scripts/curate_seed.py` runs the same agent loop non-interactively over ~20 well-known investment vehicles spanning India, Hong Kong, Singapore, Indonesia, China, South Korea, Japan, Australia, Thailand, and the Philippines. Each row is committed as `provenance='curated'`. Spot-checked manually before demo.
 
 ## Refresh
 
-The pipeline is idempotent. Re-run with:
+The chat agent extends the dataset live. Every chat-driven write is tagged `provenance='chat_discovered'` (new) or `chat_enriched` (updates an existing entity).
 
-```
-docker exec capital-agent python -m ingest.run \
-  --out /app/data/capital.db [--discover] [--enrich-sources] [--enrich]
-```
+## Limits (free-tier)
 
-Backend reads continue uninterrupted thanks to SQLite WAL mode.
+- Exa free tier: ~1000 searches/month
+- Firecrawl free tier: ~500 scrapes/month
+- Apollo free tier: 100 credits/month
+- Finnhub free tier: 60 calls/min, no premium fundamentals
+- Polygon free tier: 5 calls/min on US/major exchanges
 
-## Limits
-
-- The discovery pass (`--discover`) produces candidate URLs only; a human must triage `data/discovery_candidates.json` before those entities enter the database.
-- Enrichment sources (Crunchbase, Apollo, LinkedIn, Firecrawl) each require a paid API key; without keys the enrichment step is silently skipped and entities retain their seed-only data quality score.
-- Frontier-market depth is explicitly low — Tier-3 country entities are placeholders to ensure regional coverage rather than triage-grade data.
+The pipeline tolerates each individually missing — wrappers return `[]`/`None` gracefully. The validator still enforces evidence rules regardless of which sources are populated.

@@ -5,6 +5,7 @@ __pycache__/
 data/
 node_modules/
 frontend/dist/
+frontend/tsconfig.tsbuildinfo
 backend/static/
 *.db
 *.db-journal
