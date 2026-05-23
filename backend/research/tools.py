@@ -119,8 +119,86 @@ TOOL_SCHEMAS = [
         "name": "commit_entity",
         "description": (
             "Persist a fully evidenced investment-vehicle bundle to the DB. "
-            "Must include `entity`, `evidence` (≥5 of the 7 questions, each citing URLs "
-            "present in `sources`), and `sources`. Server validates and may reject."),
-        "parameters": {"type": "object", "properties": {
-            "bundle": {"type": "object"}}, "required": ["bundle"]}}},
+            "Server validates and may reject; if rejected, fix the errors and retry."),
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "bundle": {
+                    "type": "object",
+                    "properties": {
+                        "entity": {
+                            "type": "object",
+                            "properties": {
+                                "name": {"type": "string"},
+                                "type": {"type": "string",
+                                         "enum": ["listed_holding", "sfo", "mfo",
+                                                  "trust", "foundation"]},
+                                "country": {"type": "string",
+                                            "description": "ISO 3166-1 alpha-2"},
+                                "region": {"type": "string"},
+                                "controlling_family": {"type": ["string", "null"]},
+                                "ticker": {"type": ["string", "null"]},
+                                "exchange": {"type": ["string", "null"]},
+                                "estimated_aum_usd": {"type": ["number", "null"]},
+                                "aum_basis": {"type": "string",
+                                              "enum": ["disclosed", "market_cap",
+                                                       "estimate", "unknown"]},
+                                "sectors": {"type": "array",
+                                            "items": {"type": "string"}},
+                                "deployment": {"type": "string"},
+                                "accessibility": {"type": "string"},
+                                "provenance": {"type": "string",
+                                               "enum": ["curated", "chat_discovered",
+                                                        "chat_enriched"]},
+                                "confidence_score": {"type": "integer",
+                                                     "minimum": 1, "maximum": 5},
+                            },
+                            "required": ["name", "type", "country", "region",
+                                         "aum_basis", "provenance", "confidence_score"],
+                        },
+                        "evidence": {
+                            "type": "array",
+                            "description": "At least 5 of the 7 question_keys; "
+                                           "each answer cites URL(s) from `sources`.",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "question_key": {
+                                        "type": "string",
+                                        "enum": ["where_capital_sits", "how_much_capital",
+                                                 "who_controls", "how_deployed",
+                                                 "direct_or_external", "accessibility",
+                                                 "why_invest"],
+                                    },
+                                    "answer": {"type": "string"},
+                                    "confidence": {"type": "integer",
+                                                   "minimum": 1, "maximum": 5},
+                                    "source_urls": {"type": "array",
+                                                    "items": {"type": "string"}},
+                                },
+                                "required": ["question_key", "answer",
+                                             "confidence", "source_urls"],
+                            },
+                            "minItems": 5,
+                        },
+                        "sources": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "url": {"type": "string"},
+                                    "source_type": {"type": "string"},
+                                    "note": {"type": "string"},
+                                    "retrieved_at": {"type": "string"},
+                                },
+                                "required": ["url", "source_type"],
+                            },
+                        },
+                    },
+                    "required": ["entity", "evidence", "sources"],
+                },
+            },
+            "required": ["bundle"],
+        },
+    }},
 ]

@@ -7,7 +7,7 @@ from typing import AsyncIterator
 from backend import llm
 from backend.research import session, tools, prompts
 
-MAX_TOOL_CALLS_PER_TURN = 8
+MAX_TOOL_CALLS_PER_TURN = 16
 
 async def run_turn(session_id: str, user_message: str
                    ) -> AsyncIterator[dict]:
