@@ -25,7 +25,8 @@ ENV EXA_API_KEY=$EXA_API_KEY \
     APOLLO_API_KEY=$APOLLO_API_KEY \
     LINKEDIN_API_KEY=$LINKEDIN_API_KEY \
     OPENROUTER_API_KEY=$OPENROUTER_API_KEY
-RUN python -m ingest.run --out /capital.db ${ENRICH:+--enrich}
+RUN python -c "from pathlib import Path; from ingest.write_db import build_db; build_db(Path('/capital.db'), [], [], [], [])" && \
+    python -m ingest.migrate_evidence /capital.db
 
 # Stage 3: Runtime
 FROM python:3.12-slim AS runtime
@@ -37,6 +38,7 @@ RUN pip install --no-cache-dir -r requirements.txt -r requirements-ingest.txt
 COPY backend/ ./backend/
 COPY ingest/ ./ingest/
 COPY scripts/gen-cert.sh scripts/entrypoint.sh ./
+COPY scripts/ ./scripts/
 RUN chmod +x ./gen-cert.sh ./entrypoint.sh && ./gen-cert.sh
 COPY --from=frontend /fe/dist ./backend/static
 COPY --from=ingest /capital.db /app/seed/capital.db
