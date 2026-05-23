@@ -1,7 +1,7 @@
 import type { Entity } from "../types";
 
 interface Props {
-  entities: Entity[];
+  entities: (Entity & { evidence_count?: number })[];
   total: number;
   onSelect: (id: string) => void;
   onSort: (s: "aum_desc" | "aum_asc" | "name" | "data_quality_desc") => void;
@@ -14,8 +14,9 @@ function fmtAum(v?: number | null): string {
   return `$${v.toFixed(0)}`;
 }
 
-function dqDots(n: number): string {
-  return "●".repeat(n) + "○".repeat(5 - n);
+function evidenceBadge(n: number): string {
+  if (n >= 5) return `${n}/7 ●`;
+  return `${n}/7 ○`;
 }
 
 export default function EntityTable({ entities, total, onSelect, onSort }: Props) {
@@ -32,8 +33,7 @@ export default function EntityTable({ entities, total, onSelect, onSort }: Props
             <th className="text-left px-3 py-2">Family</th>
             <th className="text-right px-3 py-2 cursor-pointer"
                 onClick={() => onSort("aum_desc")}>AUM</th>
-            <th className="text-left px-3 py-2 cursor-pointer"
-                onClick={() => onSort("data_quality_desc")}>DQ</th>
+            <th className="text-left px-3 py-2">Evidence</th>
           </tr>
         </thead>
         <tbody>
@@ -48,8 +48,8 @@ export default function EntityTable({ entities, total, onSelect, onSort }: Props
               <td className="px-3 py-2 numeric text-right text-accent">
                 {fmtAum(e.estimated_aum_usd)}
               </td>
-              <td className="px-3 py-2 numeric text-accent">
-                {dqDots(e.data_quality)}
+              <td className="px-3 py-2 numeric text-accent text-xs">
+                {evidenceBadge(e.evidence_count ?? 0)}
               </td>
             </tr>
           ))}

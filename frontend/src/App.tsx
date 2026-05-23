@@ -1,18 +1,22 @@
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useState, useRef } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { MessageSquare } from "lucide-react";
 import TopBar from "./components/TopBar";
 import FilterPanel from "./components/FilterPanel";
 import EntityTable from "./components/EntityTable";
-import AskPanel from "./components/AskPanel";
+import ChatPanel from "./components/ChatPanel";
 import DetailView from "./components/DetailView";
-import { listEntities, ask } from "./api";
-import type { AskResponse, Filters } from "./types";
+import { listEntities } from "./api";
+import type { Filters } from "./types";
 
 export default function App() {
-  const [filters, setFilters] = useState<Filters>({ sort: "aum_desc", limit: 50, offset: 0 });
-  const [askResult, setAskResult] = useState<AskResponse | null>(null);
+  const [filters, setFilters] = useState<Filters>({
+    sort: "aum_desc", limit: 0, offset: 0,
+  });
   const [selected, setSelected] = useState<string | null>(null);
-  const [askLoading, setAskLoading] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
+  const sessionId = useRef(crypto.randomUUID()).current;
+  const qc = useQueryClient();
 
   const { data } = useQuery({
     queryKey: ["entities", filters],
@@ -20,29 +24,26 @@ export default function App() {
     placeholderData: (prev) => prev,
   });
 
-  const handleAsk = async (q: string) => {
-    setAskLoading(true);
-    try { setAskResult(await ask(q)); }
-    catch { setAskResult({ answer: "Sorry — the assistant is unreachable.",
-                            entities: [], filters_used: {} }); }
-    finally { setAskLoading(false); }
+  const onDbWrite = (_id: string) => {
+    qc.invalidateQueries({ queryKey: ["entities"] });
   };
 
   return (
     <div className="h-full flex flex-col">
-      <TopBar onAsk={handleAsk} />
+      <TopBar onAsk={(q) => { setChatOpen(true); /* user sends in chat */ void q; }} />
+      <button
+        onClick={() => setChatOpen((v) => !v)}
+        aria-label="Toggle research chat"
+        className="fixed bottom-4 right-4 z-50 bg-accent text-bg rounded-full \
+shadow-lg p-3 hover:opacity-90">
+        <MessageSquare size={18} />
+      </button>
       <div className="flex-1 flex overflow-hidden">
         <FilterPanel value={filters} onChange={setFilters} />
         {selected ? (
           <DetailView id={selected} onBack={() => setSelected(null)} />
         ) : (
           <main className="flex-1 flex flex-col overflow-hidden">
-            {askLoading && <div className="px-4 py-2 text-muted text-sm">Thinking…</div>}
-            {askResult && (
-              <AskPanel result={askResult}
-                        onDismiss={() => setAskResult(null)}
-                        onSelect={setSelected} />
-            )}
             <EntityTable
               entities={data?.results ?? []}
               total={data?.total ?? 0}
@@ -52,6 +53,12 @@ export default function App() {
           </main>
         )}
       </div>
+      <ChatPanel
+        sessionId={sessionId}
+        open={chatOpen}
+        onClose={() => setChatOpen(false)}
+        onDbWrite={onDbWrite}
+      />
     </div>
   );
 }
