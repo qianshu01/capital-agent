@@ -4,7 +4,9 @@ import os
 import httpx
 
 URL = "https://openrouter.ai/api/v1/chat/completions"
-MODEL = os.environ.get("OPENROUTER_MODEL", "google/gemini-2.0-flash-exp:free")
+MODEL = os.environ.get(
+    "OPENROUTER_MODEL", "meta-llama/llama-3.3-70b-instruct:free"
+)
 
 def chat_completion(
     messages: list[dict],

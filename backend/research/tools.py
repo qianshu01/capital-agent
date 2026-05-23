@@ -75,6 +75,10 @@ def call(name: str, arguments_json: str) -> str:
         return json.dumps(fn(**args))
     except TypeError as e:
         return json.dumps({"error": f"argument error: {e}"})
+    except Exception as e:
+        # Surface the error to the LLM so it can retry with a corrected call,
+        # rather than crashing the whole run_turn coroutine.
+        return json.dumps({"error": f"{type(e).__name__}: {e}"})
 
 # ---- JSON schemas for OpenRouter tool-calling --------------------------------
 
