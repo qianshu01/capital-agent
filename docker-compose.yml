@@ -1,0 +1,29 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        EXA_API_KEY: ${EXA_API_KEY:-}
+        FIRECRAWL_API_KEY: ${FIRECRAWL_API_KEY:-}
+        CRUNCHBASE_API_KEY: ${CRUNCHBASE_API_KEY:-}
+        APOLLO_API_KEY: ${APOLLO_API_KEY:-}
+        LINKEDIN_API_KEY: ${LINKEDIN_API_KEY:-}
+        OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+        ENRICH: ${ENRICH:-}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - DB_PATH=/app/data/capital.db
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+      - OPENROUTER_MODEL=${OPENROUTER_MODEL:-}
+      - EXA_API_KEY=${EXA_API_KEY:-}
+      - FIRECRAWL_API_KEY=${FIRECRAWL_API_KEY:-}
+      - APOLLO_API_KEY=${APOLLO_API_KEY:-}
+      - FINNHUB_API_KEY=${FINNHUB_API_KEY:-}
+      - POLYGON_API_KEY=${POLYGON_API_KEY:-}
+    restart: unless-stopped

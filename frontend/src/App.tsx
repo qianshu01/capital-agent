@@ -11,7 +11,7 @@ import type { Filters } from "./types";
 
 export default function App() {
   const [filters, setFilters] = useState<Filters>({
-    sort: "aum_desc", limit: 0, offset: 0,
+    sort: "aum_desc", limit: 500, offset: 0,
   });
   const [selected, setSelected] = useState<string | null>(null);
   const [chatOpen, setChatOpen] = useState(false);
