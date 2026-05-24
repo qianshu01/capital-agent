@@ -42,7 +42,6 @@ COPY scripts/ ./scripts/
 RUN chmod +x ./gen-cert.sh ./entrypoint.sh && ./gen-cert.sh
 COPY --from=frontend /fe/dist ./backend/static
 COPY --from=ingest /capital.db /app/seed/capital.db
-VOLUME /app/data
 EXPOSE 8443
 ENTRYPOINT ["./entrypoint.sh"]
 CMD ["uvicorn", "backend.main:app", \
