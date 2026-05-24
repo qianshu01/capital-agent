@@ -31,20 +31,16 @@ RUN python -c "from pathlib import Path; from ingest.write_db import build_db; b
 # Stage 3: Runtime
 FROM python:3.12-slim AS runtime
 WORKDIR /app
-RUN apt-get update && apt-get install -y --no-install-recommends openssl \
-    && rm -rf /var/lib/apt/lists/*
 COPY requirements.txt requirements-ingest.txt ./
 RUN pip install --no-cache-dir -r requirements.txt -r requirements-ingest.txt
 COPY backend/ ./backend/
 COPY ingest/ ./ingest/
-COPY scripts/gen-cert.sh scripts/entrypoint.sh ./
+COPY scripts/entrypoint.sh ./
 COPY scripts/ ./scripts/
-RUN chmod +x ./gen-cert.sh ./entrypoint.sh && ./gen-cert.sh
+RUN chmod +x ./entrypoint.sh
 COPY --from=frontend /fe/dist ./backend/static
 COPY --from=ingest /capital.db /app/seed/capital.db
-EXPOSE 8443
+EXPOSE 8000
 ENTRYPOINT ["./entrypoint.sh"]
 CMD ["uvicorn", "backend.main:app", \
-     "--host", "0.0.0.0", "--port", "8443", \
-     "--ssl-keyfile", "/app/certs/key.pem", \
-     "--ssl-certfile", "/app/certs/cert.pem"]
+     "--host", "0.0.0.0", "--port", "8000"]
