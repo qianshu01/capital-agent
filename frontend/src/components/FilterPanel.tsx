@@ -50,17 +50,17 @@ export default function FilterPanel({ value, onChange }: Props) {
         ))}
       </section>
       <section>
-        <h3 className="text-muted text-xs uppercase tracking-wider mb-1">Min AUM (USD)</h3>
+        <h3 className="text-muted text-xs uppercase tracking-wider mb-1">Min AUM (USD billions)</h3>
         <input
-          type="number" min={0} step={100_000_000}
-          value={value.min_aum_usd ?? ""}
+          type="number" min={0} step={0.5}
+          value={value.min_aum_usd != null ? value.min_aum_usd / 1e9 : ""}
           onChange={(e) => onChange({
             ...value,
-            min_aum_usd: e.target.value ? Number(e.target.value) : undefined,
+            min_aum_usd: e.target.value ? Number(e.target.value) * 1e9 : undefined,
             offset: 0,
           })}
           className="w-full bg-elev border border-border rounded px-2 py-1 font-mono text-xs text-accent"
-          aria-label="Minimum AUM in USD"
+          aria-label="Minimum AUM in USD billions"
         />
       </section>
     </aside>
