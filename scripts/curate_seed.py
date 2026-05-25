@@ -30,6 +30,17 @@ SEED = [
     ("Hancock Prospecting", "AU", "sfo"),
     ("Central Group", "TH", "listed_holding"),
     ("Ayala Corporation", "PH", "listed_holding"),
+    # +10 expansion (2026-05-25): high-AUM, family-controlled vehicles
+    ("Genting Berhad", "MY", "listed_holding"),
+    ("Mahindra & Mahindra", "IN", "listed_holding"),
+    ("Sun Hung Kai Properties", "HK", "listed_holding"),
+    ("New World Development", "HK", "listed_holding"),
+    ("Salim Group", "ID", "listed_holding"),
+    ("SK Holdings", "KR", "listed_holding"),
+    ("LG Corp", "KR", "listed_holding"),
+    ("JG Summit Holdings", "PH", "listed_holding"),
+    ("Vingroup", "VN", "listed_holding"),
+    ("SM Investments", "PH", "listed_holding"),
 ]
 
 CURATE_PROMPT_TEMPLATE = """Research the investment vehicle "{name}" \

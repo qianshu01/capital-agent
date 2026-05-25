@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { X, Send } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { streamChat } from "../api";
 import type { ChatEvent } from "../types";
 
@@ -74,7 +76,23 @@ border-border z-40 transition-transform ${open ? "" : "translate-x-full"}`}>
               ))}
             </div>
             {t.reply && (
-              <div className="mt-2 text-text text-sm bg-elev rounded p-2">{t.reply}</div>
+              <div className="mt-2 text-text text-sm bg-elev rounded p-2">
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    p:  (p) => <p className="mb-2 last:mb-0" {...p} />,
+                    ul: (p) => <ul className="list-disc pl-5 mb-2 last:mb-0" {...p} />,
+                    ol: (p) => <ol className="list-decimal pl-5 mb-2 last:mb-0" {...p} />,
+                    li: (p) => <li className="mb-0.5" {...p} />,
+                    a:  (p) => <a className="text-accent underline" target="_blank" rel="noreferrer" {...p} />,
+                    code: (p) => <code className="bg-bg px-1 rounded text-xs" {...p} />,
+                    strong: (p) => <strong className="font-semibold" {...p} />,
+                    h1: (p) => <h2 className="text-base font-semibold mb-2" {...p} />,
+                    h2: (p) => <h3 className="text-sm font-semibold mb-1" {...p} />,
+                    h3: (p) => <h4 className="text-sm font-semibold mb-1" {...p} />,
+                  }}
+                >{t.reply}</ReactMarkdown>
+              </div>
             )}
           </div>
         ))}
