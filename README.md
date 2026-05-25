@@ -20,15 +20,15 @@ cd frontend && npm run dev
 # open http://localhost:5173
 ```
 
-Docker (HTTPS, port 8443):
+Docker (HTTP, port 8000):
 
 ```bash
 docker build -t capital-agent .
-docker run -d --name capital-agent -p 8443:8443 \
+docker run -d --name capital-agent -p 8000:8000 \
   -v capital-data:/app/data \
   --env-file .env \
   capital-agent
-open https://localhost:8443
+open http://localhost:8000
 ```
 
 `.env` (copy from `.env.example`, fill in keys):
