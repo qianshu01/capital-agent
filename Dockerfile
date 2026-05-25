@@ -6,29 +6,7 @@ RUN npm ci
 COPY frontend/ .
 RUN npm run build
 
-# Stage 2: Ingestion (produces seed DB inside the image)
-FROM python:3.12-slim AS ingest
-WORKDIR /ingest
-COPY ingest/ ./ingest/
-COPY requirements-ingest.txt .
-RUN pip install --no-cache-dir -r requirements-ingest.txt
-ARG EXA_API_KEY=""
-ARG FIRECRAWL_API_KEY=""
-ARG CRUNCHBASE_API_KEY=""
-ARG APOLLO_API_KEY=""
-ARG LINKEDIN_API_KEY=""
-ARG OPENROUTER_API_KEY=""
-ARG ENRICH=""
-ENV EXA_API_KEY=$EXA_API_KEY \
-    FIRECRAWL_API_KEY=$FIRECRAWL_API_KEY \
-    CRUNCHBASE_API_KEY=$CRUNCHBASE_API_KEY \
-    APOLLO_API_KEY=$APOLLO_API_KEY \
-    LINKEDIN_API_KEY=$LINKEDIN_API_KEY \
-    OPENROUTER_API_KEY=$OPENROUTER_API_KEY
-RUN python -c "from pathlib import Path; from ingest.write_db import build_db; build_db(Path('/capital.db'), [], [], [], [])" && \
-    python -m ingest.migrate_evidence /capital.db
-
-# Stage 3: Runtime
+# Stage 2: Runtime
 FROM python:3.12-slim AS runtime
 WORKDIR /app
 COPY requirements.txt requirements-ingest.txt ./
@@ -39,7 +17,7 @@ COPY scripts/entrypoint.sh ./
 COPY scripts/ ./scripts/
 RUN chmod +x ./entrypoint.sh
 COPY --from=frontend /fe/dist ./backend/static
-COPY --from=ingest /capital.db /app/seed/capital.db
+COPY seed/capital.db /app/seed/capital.db
 EXPOSE 8000
 ENTRYPOINT ["./entrypoint.sh"]
 CMD ["uvicorn", "backend.main:app", \

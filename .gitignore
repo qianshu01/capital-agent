@@ -8,6 +8,7 @@ frontend/dist/
 frontend/tsconfig.tsbuildinfo
 backend/static/
 *.db
+!seed/capital.db
 *.db-journal
 *.db-wal
 *.db-shm
